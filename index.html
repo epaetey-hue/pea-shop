@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ma Boutique En Ligne</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f4f4;
+        }
+        header {
+            background: #0a7cff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .product img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        button {
+            background: #0a7cff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        button:hover {
+            background: #055bb5;
+        }
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🛍️ Ma Boutique En Ligne</h1>
+    <p>Achetez facilement depuis votre téléphone</p>
+</header>
+
+<div class="container">
+
+    <h2>Nos Produits</h2>
+    <div class="products" id="products"></div>
+
+    <hr>
+
+    <h2>📍 Envoyer votre localisation</h2>
+    <button onclick="sendLocation()">Envoyer ma position</button>
+    <p id="locationResult"></p>
+
+    <hr>
+
+    <h2>📞 Nous contacter</h2>
+    <p>
+        <a href="https://wa.me/22890000000" target="_blank">
+            <button>WhatsApp</button>
+        </a>
+        <a href="mailto:contact@maboutique.com">
+            <button>Email</button>
+        </a>
+        <a href="tel:+22890000000">
+            <button>Appeler</button>
+        </a>
+    </p>
+
+</div>
+
+<footer>
+    © 2026 - Ma Boutique
+</footer>
+
+<script>
+    // === PRODUITS (TU PEUX MODIFIER ICI) ===
+    const products = [
+        {
+            name: "T-shirt",
+            price: 5000,
+            image: "https://via.placeholder.com/200"
+        },
+        {
+            name: "Chaussures",
+            price: 15000,
+            image: "https://via.placeholder.com/200"
+        }
+    ];
+
+    const productContainer = document.getElementById("products");
+
+    products.forEach(product => {
+        productContainer.innerHTML += `
+            <div class="product">
+                <img src="${product.image}">
+                <h3>${product.name}</h3>
+                <p>${product.price} FCFA</p>
+                <button onclick="payMixByYas('${product.name}', ${product.price})">
+                    Payer avec Mix by Yas
+                </button>
+            </div>
+        `;
+    });
+
+    // === PAIEMENT MIX BY YAS (SIMULATION) ===
+    function payMixByYas(product, price) {
+        alert(
+            "Paiement Mix by Yas\n\n" +
+            "Produit : " + product + "\n" +
+            "Montant : " + price + " FCFA\n\n" +
+            "Intégration API possible plus tard."
+        );
+    }
+
+    // === LOCALISATION ===
+    function sendLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                document.getElementById("locationResult").innerHTML =
+                    `Localisation envoyée : <br>
+                     Latitude: ${lat}<br>
+                     Longitude: ${lon}`;
+            }, () => {
+                alert("Impossible d'obtenir la localisation");
+            });
+        } else {
+            alert("La géolocalisation n'est pas supportée");
+        }
+    }
+</script>
+
+</body>
+</html>
