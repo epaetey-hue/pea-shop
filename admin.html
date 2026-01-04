@@ -1,13 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Admin - Connexion</title>
+</head>
+
+<body>
+
+<h2>🔐 Connexion Admin</h2>
+
+<input type="password" id="password" placeholder="Mot de passe">
+<button onclick="login()">Se connecter</button>
+
 <script>
 function login() {
-    const pass = document.getElementById("password").value.trim();
+  const pass = document.getElementById("password").value.trim();
 
-    if (pass == "1234") {
-        localStorage.setItem("admin", "ok");
-        alert("Connexion réussie");
-        window.location.href = "dashboard.html";
-    } else {
-        alert("Mot de passe incorrect");
-    }
+  if (pass === "1234") {
+    localStorage.setItem("admin", "ok");
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Mot de passe incorrect");
+  }
 }
 </script>
+
+</body>
+</html>
