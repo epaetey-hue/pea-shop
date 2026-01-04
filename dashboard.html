@@ -1,70 +1,68 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin - Dashboard</title>
+<meta charset="UTF-8">
+<title>Dashboard Admin</title>
 </head>
+
 <body>
 
-<h2>⚙️ Tableau de bord Admin</h2>
+<h2>⚙️ Admin - Gestion Produits</h2>
 
-<h3>Ajouter un produit</h3>
 <input id="name" placeholder="Nom du produit"><br><br>
 <input id="price" placeholder="Prix"><br><br>
 <input id="image" placeholder="Lien image"><br><br>
+
 <button onclick="addProduct()">Ajouter</button>
 
 <hr>
 
-<h3>Produits</h3>
 <ul id="list"></ul>
 
 <button onclick="logout()">Déconnexion</button>
 
 <script>
-    if (localStorage.getItem("admin") !== "ok") {
-        window.location.href = "admin.html";
-    }
+if (localStorage.getItem("admin") !== "ok") {
+  window.location.href = "admin.html";
+}
 
-    let products = JSON.parse(localStorage.getItem("products")) || [];
+let products = JSON.parse(localStorage.getItem("products")) || [];
 
-    function save() {
-        localStorage.setItem("products", JSON.stringify(products));
-        render();
-    }
+function save() {
+  localStorage.setItem("products", JSON.stringify(products));
+  render();
+}
 
-    function addProduct() {
-        products.push({
-            name: name.value,
-            price: price.value,
-            image: image.value
-        });
-        save();
-    }
+function addProduct() {
+  products.push({
+    name: name.value,
+    price: price.value,
+    image: image.value
+  });
+  save();
+}
 
-    function removeProduct(index) {
-        products.splice(index, 1);
-        save();
-    }
+function removeProduct(i) {
+  products.splice(i, 1);
+  save();
+}
 
-    function render() {
-        list.innerHTML = "";
-        products.forEach((p, i) => {
-            list.innerHTML += `
-                <li>
-                    ${p.name} - ${p.price} FCFA
-                    <button onclick="removeProduct(${i})">❌</button>
-                </li>
-            `;
-        });
-    }
+function render() {
+  list.innerHTML = "";
+  products.forEach((p, i) => {
+    list.innerHTML += `
+      <li>${p.name} - ${p.price} FCFA 
+      <button onclick="removeProduct(${i})">❌</button></li>
+    `;
+  });
+}
 
-    function logout() {
-        localStorage.removeItem("admin");
-        window.location.href = "admin.html";
-    }
+function logout() {
+  localStorage.removeItem("admin");
+  window.location.href = "admin.html";
+}
 
-    render();
+render();
 </script>
 
 </body>
