@@ -100,12 +100,7 @@
 
 <script>
     // === PRODUITS (TU PEUX MODIFIER ICI) ===
-    const products = [
-        {
-            name: "T-shirt",
-            price: 5000,
-            image: "https://via.placeholder.com/200"
-        },
+    const products = JSON.parse(localStorage.getItem("products")) || [];
         {
             name: "Chaussures",
             price: 15000,
@@ -158,4 +153,5 @@
 </script>
 
 </body>
+
 </html>
