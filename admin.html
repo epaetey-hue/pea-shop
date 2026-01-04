@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Admin Boutique</title>
-</head>
-<body>
-    <h2>Connexion Admin</h2>
+<script>
+function login() {
+    const pass = document.getElementById("password").value.trim();
 
-    <input type="password" id="password" placeholder="Mot de passe">
-    <button onclick="login()">Entrer</button>
-
-    <script>
-        function login() {
-            if (document.getElementById("password").value === "1234") {
-                window.location.href = "dashboard.html";
-            } else {
-                alert("Mot de passe incorrect");
-            }
-        }
-    </script>
-</body>
-</html>
+    if (pass == "1234") {
+        localStorage.setItem("admin", "ok");
+        alert("Connexion réussie");
+        window.location.href = "dashboard.html";
+    } else {
+        alert("Mot de passe incorrect");
+    }
+}
+</script>
